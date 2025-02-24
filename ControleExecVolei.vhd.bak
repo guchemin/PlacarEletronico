@@ -1,0 +1,91 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity ControleExecVolei is
+    Port ( 
+        sw0       : in  STD_LOGIC;   -- Se 0, soma ponto; Se 1, tempo técnico
+        sw1       : in  STD_LOGIC;   -- Escolhe o time (0 ou 1)
+        exec      : in  STD_LOGIC;   -- Botão de execução
+        pontos1   : out STD_LOGIC_VECTOR(7 downto 0);  -- Pontos do time 1
+        pontos2   : out STD_LOGIC_VECTOR(7 downto 0);  -- Pontos do time 2
+        sets1     : out STD_LOGIC_VECTOR(3 downto 0);  -- Sets ganhos pelo time 1
+        sets2     : out STD_LOGIC_VECTOR(3 downto 0);  -- Sets ganhos pelo time 2
+        tempos1   : out STD_LOGIC_VECTOR(3 downto 0);  -- Tempos técnicos do time 1
+        tempos2   : out STD_LOGIC_VECTOR(3 downto 0)   -- Tempos técnicos do time 2
+    );
+end ControleExecVolei;
+
+architecture Behavioral of ControleExecVolei is
+
+    signal pontos_time1 : integer := 0;
+    signal pontos_time2 : integer := 0;
+    signal sets_time1  : integer := 0;
+    signal sets_time2  : integer := 0;
+    signal tempos_time1 : integer := 0;
+    signal tempos_time2 : integer := 0;
+    signal set_em_jogo : integer := 1;  -- Número do set atual (1, 2, 3...)
+    signal set_limite  : integer := 25 -- Limite do set (pode ser 25 ou 15)
+begin
+
+    process(exec, sw0, sw1)
+    begin
+        if falling_edge(exec) then  -- Se o botão exec for pressionado
+            if sw0 = '0' then  -- Se sw0 for 0, soma ponto
+                if sw1 = '0' then
+                    pontos_time1 <= pontos_time1 + 1;  -- Soma ponto no time 1
+                else
+                    pontos_time2 <= pontos_time2 + 1;  -- Soma ponto no time 2
+                end if;
+            elsif sw0 = '1' then  -- Se sw0 for 1, tempo técnico
+                if sw1 = '0' then
+                    if tempos_time1 < 2 then
+                        tempos_time1 <= tempos_time1 + 1;  -- Incrementa tempo técnico no time 1
+                    end if;
+                else
+                    if tempos_time2 < 2 then
+                        tempos_time2 <= tempos_time2 + 1;  -- Incrementa tempo técnico no time 2
+                    end if;
+                end if;
+            end if;
+        end if;
+        
+        -- Verifica se o time venceu o set (limite de 25 pontos, com diferença de 2)
+        if pontos_time1 >= set_limite and pontos_time1 - pontos_time2 >= 2 then
+            sets_time1 <= sets_time1 + 1;
+            pontos_time1 <= 0;
+            pontos_time2 <= 0;
+            tempos_time1 <= 0;
+            tempos_time2 <= 0;
+            
+            -- Verifica se o set vai para 15 pontos
+            if sets_time1 = 2 and sets_time2 = 2 then
+                set_limite <= 15;  -- A partir do 2x2, set vai até 15 pontos
+            end if;
+            
+        elsif pontos_time2 >= set_limite and pontos_time2 - pontos_time1 >= 2 then
+            sets_time2 <= sets_time2 + 1;
+            pontos_time1 <= 0;
+            pontos_time2 <= 0;
+            tempos_time1 <= 0;
+            tempos_time2 <= 0;
+            
+            -- Verifica se o set vai para 15 pontos
+            if sets_time1 = 2 and sets_time2 = 2 then
+                set_limite <= 15;  -- A partir do 2x2, set vai até 15 pontos
+            end if;
+        end if;
+        
+        end if;
+    end process;
+
+    -- Saídas de pontos e sets
+    pontos1 <= std_logic_vector(to_unsigned(pontos_time1, 8));
+    pontos2 <= std_logic_vector(to_unsigned(pontos_time2, 8));
+    sets1 <= std_logic_vector(to_unsigned(sets_time1, 4));
+    sets2 <= std_logic_vector(to_unsigned(sets_time2, 4));
+    tempos1 <= std_logic_vector(to_unsigned(tempos_time1, 4));
+    tempos2 <= std_logic_vector(to_unsigned(tempos_time2, 4));
+
+end Behavioral;

@@ -1,0 +1,245 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'sw8'
+Slack : -17.486
+TNS   : -292.185
+
+Type  : Slow 1200mV 85C Model Setup 'pb0'
+Slack : -5.554
+TNS   : -220.103
+
+Type  : Slow 1200mV 85C Model Setup 'ControleGeralXadrez:inst12|Cronometro:inst11|tmp'
+Slack : -4.504
+TNS   : -219.238
+
+Type  : Slow 1200mV 85C Model Setup 'ControleBasquete:inst|Cronometro:inst11|tmp'
+Slack : -3.992
+TNS   : -131.506
+
+Type  : Slow 1200mV 85C Model Setup 'freq'
+Slack : -2.756
+TNS   : -65.874
+
+Type  : Slow 1200mV 85C Model Setup 'pb1'
+Slack : 0.298
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'ControleBasquete:inst|Cronometro:inst11|tmp'
+Slack : -0.428
+TNS   : -1.220
+
+Type  : Slow 1200mV 85C Model Hold 'ControleGeralXadrez:inst12|Cronometro:inst11|tmp'
+Slack : 0.348
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'pb0'
+Slack : 0.378
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'pb1'
+Slack : 0.393
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'freq'
+Slack : 0.638
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'sw8'
+Slack : 1.229
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'pb0'
+Slack : -2.679
+TNS   : -52.875
+
+Type  : Slow 1200mV 85C Model Removal 'pb0'
+Slack : 1.682
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'pb0'
+Slack : -3.000
+TNS   : -85.777
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'freq'
+Slack : -3.000
+TNS   : -50.702
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'pb1'
+Slack : -3.000
+TNS   : -4.403
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'sw8'
+Slack : -3.000
+TNS   : -3.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'ControleGeralXadrez:inst12|Cronometro:inst11|tmp'
+Slack : -1.403
+TNS   : -84.180
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'ControleBasquete:inst|Cronometro:inst11|tmp'
+Slack : -1.403
+TNS   : -81.374
+
+Type  : Slow 1200mV 0C Model Setup 'sw8'
+Slack : -15.866
+TNS   : -266.396
+
+Type  : Slow 1200mV 0C Model Setup 'pb0'
+Slack : -5.022
+TNS   : -202.338
+
+Type  : Slow 1200mV 0C Model Setup 'ControleGeralXadrez:inst12|Cronometro:inst11|tmp'
+Slack : -4.055
+TNS   : -200.894
+
+Type  : Slow 1200mV 0C Model Setup 'ControleBasquete:inst|Cronometro:inst11|tmp'
+Slack : -3.629
+TNS   : -120.256
+
+Type  : Slow 1200mV 0C Model Setup 'freq'
+Slack : -2.465
+TNS   : -56.457
+
+Type  : Slow 1200mV 0C Model Setup 'pb1'
+Slack : 0.362
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'ControleBasquete:inst|Cronometro:inst11|tmp'
+Slack : -0.241
+TNS   : -0.433
+
+Type  : Slow 1200mV 0C Model Hold 'ControleGeralXadrez:inst12|Cronometro:inst11|tmp'
+Slack : 0.311
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'pb0'
+Slack : 0.338
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'pb1'
+Slack : 0.355
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'freq'
+Slack : 0.590
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'sw8'
+Slack : 1.091
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'pb0'
+Slack : -2.329
+TNS   : -48.919
+
+Type  : Slow 1200mV 0C Model Removal 'pb0'
+Slack : 1.497
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'pb0'
+Slack : -3.000
+TNS   : -85.777
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'freq'
+Slack : -3.000
+TNS   : -50.702
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'pb1'
+Slack : -3.000
+TNS   : -4.403
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'sw8'
+Slack : -3.000
+TNS   : -3.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'ControleGeralXadrez:inst12|Cronometro:inst11|tmp'
+Slack : -1.403
+TNS   : -84.180
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'ControleBasquete:inst|Cronometro:inst11|tmp'
+Slack : -1.403
+TNS   : -81.374
+
+Type  : Fast 1200mV 0C Model Setup 'sw8'
+Slack : -6.184
+TNS   : -100.345
+
+Type  : Fast 1200mV 0C Model Setup 'pb0'
+Slack : -1.738
+TNS   : -55.240
+
+Type  : Fast 1200mV 0C Model Setup 'ControleGeralXadrez:inst12|Cronometro:inst11|tmp'
+Slack : -1.370
+TNS   : -57.520
+
+Type  : Fast 1200mV 0C Model Setup 'ControleBasquete:inst|Cronometro:inst11|tmp'
+Slack : -1.161
+TNS   : -28.882
+
+Type  : Fast 1200mV 0C Model Setup 'freq'
+Slack : -0.569
+TNS   : -7.398
+
+Type  : Fast 1200mV 0C Model Setup 'pb1'
+Slack : 0.694
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'ControleBasquete:inst|Cronometro:inst11|tmp'
+Slack : -0.273
+TNS   : -0.914
+
+Type  : Fast 1200mV 0C Model Hold 'ControleGeralXadrez:inst12|Cronometro:inst11|tmp'
+Slack : -0.015
+TNS   : -0.090
+
+Type  : Fast 1200mV 0C Model Hold 'pb0'
+Slack : 0.165
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'pb1'
+Slack : 0.170
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'freq'
+Slack : 0.245
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'sw8'
+Slack : 0.366
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'pb0'
+Slack : -0.656
+TNS   : -5.932
+
+Type  : Fast 1200mV 0C Model Removal 'pb0'
+Slack : 0.645
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'pb0'
+Slack : -3.000
+TNS   : -81.223
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'freq'
+Slack : -3.000
+TNS   : -42.642
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'sw8'
+Slack : -3.000
+TNS   : -11.457
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'pb1'
+Slack : -3.000
+TNS   : -4.343
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'ControleGeralXadrez:inst12|Cronometro:inst11|tmp'
+Slack : -1.000
+TNS   : -60.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'ControleBasquete:inst|Cronometro:inst11|tmp'
+Slack : -1.000
+TNS   : -58.000
+
+------------------------------------------------------------

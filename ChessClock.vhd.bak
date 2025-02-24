@@ -1,0 +1,149 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity ChessClock is
+    Port (
+        clk : in STD_LOGIC; -- 1 kHz clock
+        sw : in STD_LOGIC_VECTOR(9 downto 0); -- Switches
+        pb0 : in STD_LOGIC; -- Button
+        hex0, hex1 : out STD_LOGIC_VECTOR(3 downto 0); 
+        hex2, hex3 : out STD_LOGIC_VECTOR(3 downto 0); 
+        hex4, hex5 : out STD_LOGIC_VECTOR(3 downto 0)  
+    );
+end ChessClock;
+
+architecture Behavioral of ChessClock is
+    signal player : STD_LOGIC := '0'; -- '0' for Player 1, '1' for Player 2
+    signal minutes1, minutes2 : INTEGER range 0 to 99 := 0;
+    signal seconds1, seconds2 : INTEGER range 0 to 59 := 0;
+    signal tenths1, tenths2 : INTEGER range 0 to 9 := 0;
+    signal hundredths1, hundredths2 : INTEGER range 0 to 9 := 0;
+    signal state : STD_LOGIC_VECTOR(1 downto 0) := "00"; -- State selector
+    signal increment : INTEGER range 0 to 99 := 0;
+    signal count : INTEGER := 0;
+    signal active : BOOLEAN := FALSE;
+
+    -- Function to split a 2-digit integer into tens and units
+    procedure split_number(number : in INTEGER; signal tens_digit, unit_digit : out STD_LOGIC_VECTOR(3 downto 0)) is
+    begin
+        tens_digit <= CONV_STD_LOGIC_VECTOR(number / 10, 4);
+        unit_digit <= CONV_STD_LOGIC_VECTOR(number mod 10, 4);
+    end procedure;
+
+begin
+    process(clk)
+    begin
+        if rising_edge(clk) then
+            if sw(9 downto 8) = "10" then
+                case state is
+                    when "00" => -- Playing
+                        if active then
+                            if count = 999 then
+                                count <= 0;
+                                if player = '0' then
+                                    if hundredths1 = 0 then
+                                        hundredths1 <= 9;
+                                        if tenths1 = 0 then
+                                            tenths1 <= 9;
+                                            if seconds1 = 0 then
+                                                seconds1 <= 59;
+                                                if minutes1 = 0 then
+                                                    active <= FALSE; -- Time's up
+                                                else
+                                                    minutes1 <= minutes1 - 1;
+                                                end if;
+                                            else
+                                                seconds1 <= seconds1 - 1;
+                                            end if;
+                                        else
+                                            tenths1 <= tenths1 - 1;
+                                        end if;
+                                    else
+                                        hundredths1 <= hundredths1 - 1;
+                                    end if;
+                                else
+                                    if hundredths2 = 0 then
+                                        hundredths2 <= 9;
+                                        if tenths2 = 0 then
+                                            tenths2 <= 9;
+                                            if seconds2 = 0 then
+                                                seconds2 <= 59;
+                                                if minutes2 = 0 then
+                                                    active <= FALSE; -- Time's up
+                                                else
+                                                    minutes2 <= minutes2 - 1;
+                                                end if;
+                                            else
+                                                seconds2 <= seconds2 - 1;
+                                            end if;
+                                        else
+                                            tenths2 <= tenths2 - 1;
+                                        end if;
+                                    else
+                                        hundredths2 <= hundredths2 - 1;
+                                    end if;
+                                end if;
+                            else
+                                count <= count + 1;
+                            end if;
+                        end if;
+
+                    when "01" => -- Setting minutes
+                        if pb0 = '1' then
+                            if player = '0' then
+                                minutes1 <= CONV_INTEGER(sw(5 downto 0));
+                            else
+                                minutes2 <= CONV_INTEGER(sw(5 downto 0));
+                            end if;
+                        end if;
+
+                    when "10" => -- Setting seconds
+                        if pb0 = '1' then
+                            if player = '0' then
+                                seconds1 <= CONV_INTEGER(sw(5 downto 0));
+                            else
+                                seconds2 <= CONV_INTEGER(sw(5 downto 0));
+                            end if;
+                        end if;
+
+                    when "11" => -- Setting increment
+                        if pb0 = '1' then
+                            increment <= CONV_INTEGER(sw(5 downto 0));
+                        end if;
+
+                    when others => null;
+                end case;
+
+                if pb0 = '1' and state = "00" then
+                    player <= not player;
+                    if player = '0' then
+                        seconds1 <= seconds1 + increment;
+                    else
+                        seconds2 <= seconds2 + increment;
+                    end if;
+                end if;
+            else
+                -- Reset all parameters if sw9 and sw8 are not "10"
+                player <= '0';
+                minutes1 <= 0;
+                minutes2 <= 0;
+                seconds1 <= 0;
+                seconds2 <= 0;
+                tenths1 <= 0;
+                tenths2 <= 0;
+                hundredths1 <= 0;
+                hundredths2 <= 0;
+                increment <= 0;
+                active <= FALSE;
+            end if;
+        end if;
+    end process;
+
+    -- Split values into tens and units for display
+    split_number(minutes1, hex5, hex4); -- Minutes for Player 1
+    split_number(seconds1, hex3, hex2); -- Seconds for Player 1
+    split_number(tenths1, hex1, hex0);  -- Tenths and hundredths for Player 1
+
+end Behavioral;

@@ -1,0 +1,64 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity Volei is
+    Port (
+        sw7, sw6     : in std_logic;  -- Seletor para escolher a tela
+        pontos_t1    : in integer range 0 to 999;   -- Pontos do time 1
+        pontos_t2    : in integer range 0 to 999;   -- Pontos do time 2
+        sets_t1      : in integer range 0 to 5;     -- Sets ganhos do time 1
+        sets_t2      : in integer range 0 to 5;     -- Sets ganhos do time 2
+        tempos_t1    : in integer range 0 to 2;     -- Tempos do time 1
+        tempos_t2    : in integer range 0 to 2;     -- Tempos do time 2
+        hex0, hex1, hex2, hex3, hex4, hex5 : out std_logic_vector(3 downto 0)  -- Display
+    );
+end Volei;
+
+architecture Comportamento of Volei is
+	 signal set_atual : integer range 0 to 5 := 0;
+begin
+    process(sw7, sw6, pontos_t1, pontos_t2, sets_t1, sets_t2, tempos_t1, tempos_t2)
+    begin
+        case sw7 & sw6 is
+            when "00" =>  -- Tela 00: Pontos do time 1, time 2, e set atual
+                -- Pontos do time 1
+                hex5 <= conv_std_logic_vector(pontos_t1 / 100, 4);
+                hex4 <= conv_std_logic_vector((pontos_t1 / 10) mod 10, 4);
+                hex3 <= conv_std_logic_vector(pontos_t1 mod 10, 4);
+                
+                -- Pontos do time 2
+                hex2 <= conv_std_logic_vector(pontos_t2 / 100, 4);
+                hex1 <= conv_std_logic_vector((pontos_t2 / 10) mod 10, 4);
+                hex0 <= conv_std_logic_vector(pontos_t2 mod 10, 4);
+					 
+					 set_atual <= sets_t1 + sets_t2 + 1;
+                
+                -- Set atual (no hex2)
+                hex2 <= conv_std_logic_vector(set_atual, 4);
+
+            when "01" =>  -- Tela 01: Sets ganhos e tempos restantes
+                -- Sets ganhos do time 1
+                hex5 <= conv_std_logic_vector(sets_t1, 4);
+                
+                -- Sets ganhos do time 2
+                hex0 <= conv_std_logic_vector(sets_t2, 4);
+                
+                -- Tempos do time 1
+                hex3 <= conv_std_logic_vector(tempos_t1, 4);
+                
+                -- Tempos do time 2
+                hex2 <= conv_std_logic_vector(tempos_t2, 4);
+
+            when others =>  -- Caso não haja seleção, limpa os displays
+                hex5 <= "0000";
+                hex4 <= "0000";
+                hex3 <= "0000";
+                hex2 <= "0000";
+                hex1 <= "0000";
+                hex0 <= "0000";
+        end case;
+    end process;
+
+end Comportamento;

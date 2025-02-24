@@ -1,0 +1,22 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity Basquete is
+	Port (
+		seletor: in std_logic_vector(1 downto 0);  -- para saber se eh o esporte certo - sw9 e sw8
+		comandos: in std_logic_vector(7 downto 0); -- todos os comandos - sw7 a sw0
+		pausa: in std_logic;                       -- pb0 para pausar/despausar o relogio
+		exec: in std_logic;                        -- pb1 para executar o comando recebido
+		clk: in std_logic;                         -- para correr o cronometro
+		hex0: out std_logic_vector(3 downto 0);    -- diz o que mostrar no display hex0 e assim por diante
+		hex1: out std_logic_vector(3 downto 0);
+		hex2: out std_logic_vector(3 downto 0);
+		hex3: out std_logic_vector(3 downto 0);
+		hex4: out std_logic_vector(3 downto 0);
+		hex5: out std_logic_vector(3 downto 0)
+	);
+end Basquete;
+
+architecture Comportamento of Basquete is
+
+end Comportamento;

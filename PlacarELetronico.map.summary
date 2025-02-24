@@ -1,0 +1,16 @@
+Analysis & Synthesis Status : Successful - Wed Feb 19 09:18:56 2025
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Revision Name : PlacarELetronico
+Top-level Entity Name : PlacarELetronico
+Family : MAX 10
+Total logic elements : 2,473
+    Total combinational functions : 2,473
+    Dedicated logic registers : 212
+Total registers : 212
+Total pins : 63
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0
+UFM blocks : 0
+ADC blocks : 0
